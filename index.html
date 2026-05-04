@@ -1536,8 +1536,154 @@
     /* ═══════ LANGUAGE SYSTEM ═══════ */
     var currentLang='fr';
     var T={
-        fr:{nav:['Profil','Expertise','Parcours','FAQ','Contact'],cta:'Me contacter',avail:'Disponible — Paris, France',heroTitle:'Business Analyst <span>·</span> Risk & Finance Transformation<br>Credit Risk <span>·</span> Basel III/IV',heroDesc:'+4 ans d’expérience en transformation Risk & Finance, conformité Bâle III/IV et reporting réglementaire au sein des plus grandes institutions bancaires françaises. Basé en France, mobilité internationale.',btn1:'Mon parcours',btn2:'Travaillons ensemble',stats:['Années d’expérience','Données réglementaires traitées','Grandes institutions'],secs:['Mon <em>profil</em>','Mon <em>expertise</em>','Mon <em>parcours</em>'],aboutIntro:'Senior Business Analyst spécialisé en Risk & Finance Transformation dans la banque de financement et d’investissement (CIB).',aboutBody:'Fort de plus de 4 ans au sein de Crédit Agricole CIB, Société Générale, BPCE SA et CACEIS, j’ai développé une expertise solide en projets Bâle III/IV, modélisation du risque crédit (LGD, PD, EAD), reporting réglementaire FINREP et optimisation RWA. Mon approche combine rigueur analytique, maîtrise des données et sensibilité technologique pour accompagner les directions Risk, Finance et IT dans leurs enjeux de transformation réglementaire.',infoLbl:['Localisation','Disponibilité','Formation','Langues'],iv1:'Disponible<span class="info-sub">CDI · Freelance · Contractor</span>',iv3:'Français (natif)<span class="info-sub">Anglais — B2 CEFR</span>',emailBtn:'✉ Envoyer un email',skillsIntro:'Une combinaison rare de rigueur financière, maîtrise des données et sensibilité technologique — forgée dans des environnements bancaires exigeants.',toolsTitle:'Outils & Technologies',expIntro:'Un parcours construit dans des environnements financiers exigeants, de la salle des marchés aux équipes risque des plus grandes banques françaises.',eduTitle:'Formation académique',certsLabel:'Certifications',ctcHeadline:'Disponible pour toute<br><em>opportunité en France & à l’international.</em>',ctcBody:'Que vous souhaitiez recruter un Business Analyst expert en Risk & Finance Transformation, collaborer sur un projet réglementaire ou simplement échanger sur vos enjeux — je suis disponible et réactif.',chLbl:['Email','LinkedIn'],interestsTitle:'Centres d’intérêt',traits:['Rigueur analytique','Vision stratégique','Orientation résultats','Communication transverse','Curiosité technologique','Leadership'],fLbl:['Prénom','Nom','Email','Type d’opportunité','Objet','Message'],fsel:['Sélectionner...','CDI — Poste permanent','Freelance / Contractor','Mission de consulting','Partenariat','Autre'],submit:'Envoyer le message →',footer:'© 2026 — Senior Consultant · Risk & Finance Transformation · Basel III/IV<br>Paris, France · Mobilité internationale'},
-        en:{nav:['Profile','Expertise','Experience','FAQ','Contact'],cta:'Contact me',avail:'Available — Paris, France',heroTitle:'Business Analyst <span>·</span> Risk & Finance Transformation<br>Credit Risk <span>·</span> Basel III/IV',heroDesc:'4+ years of experience in Risk & Finance Transformation, Basel III/IV compliance and regulatory reporting within France’s largest banking institutions. Based in France, internationally mobile.',btn1:'My experience',btn2:'Let’s work together',stats:['Years of experience','Regulatory records processed','Major institutions'],secs:['My <em>profile</em>','My <em>expertise</em>','My <em>experience</em>'],aboutIntro:'Senior Business Analyst specialized in Risk & Finance Transformation within corporate and investment banking (CIB).',aboutBody:'With over 4 years at Crédit Agricole CIB, Société Générale, BPCE SA and CACEIS, I have built solid expertise in Basel III/IV projects, credit risk modeling (LGD, PD, EAD), FINREP regulatory reporting and RWA optimization. My approach combines analytical rigor, data mastery and technological awareness to support Risk, Finance and IT departments in their regulatory transformation challenges.',infoLbl:['Location','Availability','Education','Languages'],iv1:'Available<span class="info-sub">Full-time · Freelance · Contractor</span>',iv3:'French (native)<span class="info-sub">English — B2 CEFR</span>',emailBtn:'✉ Send an email',skillsIntro:'A rare combination of financial rigor, data mastery and technological awareness — forged in demanding banking environments.',toolsTitle:'Tools & Technologies',expIntro:'A career built in demanding financial environments, from trading floors to risk teams at France’s largest banks.',eduTitle:'Academic background',certsLabel:'Certifications',ctcHeadline:'Available for any<br><em>opportunity in France & internationally.</em>',ctcBody:'Whether you want to hire a Business Analyst expert in Risk & Finance Transformation, collaborate on a regulatory project or simply discuss your challenges — I am available and responsive.',chLbl:['Email','LinkedIn'],interestsTitle:'Interests',traits:['Analytical rigor','Strategic vision','Results-oriented','Cross-functional communication','Tech curiosity','Leadership'],fLbl:['First name','Last name','Email','Opportunity type','Subject','Message'],fsel:['Select...','Full-time position','Freelance / Contractor','Consulting engagement','Partnership','Other'],submit:'Send message →',footer:'© 2026 — Senior Consultant · Risk & Finance Transformation · Basel III/IV<br>Paris, France · International mobility'}
+        fr:{
+            nav:['Profil','Expertise','Parcours','FAQ','Contact'],
+            cta:'Me contacter',
+            avail:'Disponible — Paris, France',
+            heroTitle:'Business Analyst <span>·</span> Risk & Finance Transformation<br>Credit Risk <span>·</span> Basel III/IV',
+            heroDesc:'+4 ans d\'expérience en transformation Risk & Finance, conformité Bâle III/IV et reporting réglementaire au sein des plus grandes institutions bancaires françaises. Basé en France, mobilité internationale.',
+            btn1:'Mon parcours',
+            btn2:'Travaillons ensemble',
+            stats:['Années d\'expérience','Données réglementaires traitées','Grandes institutions'],
+            secs:['Mon <em>profil</em>','Mon <em>expertise</em>','Mon <em>parcours</em>'],
+            aboutIntro:'Senior Business Analyst spécialisé en Risk & Finance Transformation dans la banque de financement et d\'investissement (CIB).',
+            aboutBody:'Fort de plus de 4 ans au sein de Crédit Agricole CIB, Société Générale, BPCE SA et CACEIS, j\'ai développé une expertise solide en projets Bâle III/IV, modélisation du risque crédit (LGD, PD, EAD), reporting réglementaire FINREP et optimisation RWA. Mon approche combine rigueur analytique, maîtrise des données et sensibilité technologique pour accompagner les directions Risk, Finance et IT dans leurs enjeux de transformation réglementaire.',
+            infoLbl:['Localisation','Disponibilité','Formation','Langues'],
+            iv1:'Disponible<span class="info-sub">CDI · Freelance · Contractor</span>',
+            iv3:'Français (natif)<span class="info-sub">Anglais — B2 CEFR</span>',
+            emailBtn:'✉ Envoyer un email',
+            skillsIntro:'Une combinaison rare de rigueur financière, maîtrise des données et sensibilité technologique — forgée dans des environnements bancaires exigeants.',
+            toolsTitle:'Outils & Technologies',
+            expIntro:'Un parcours construit dans des environnements financiers exigeants, de la salle des marchés aux équipes risque des plus grandes banques françaises.',
+            eduTitle:'Formation académique',
+            certsLabel:'Certifications',
+            ctcHeadline:'Disponible pour toute<br><em>opportunité en France & à l\'international.</em>',
+            ctcBody:'Que vous souhaitiez recruter un Business Analyst expert en Risk & Finance Transformation, collaborer sur un projet réglementaire ou simplement échanger sur vos enjeux — je suis disponible et réactif.',
+            chLbl:['Email','LinkedIn'],
+            interestsTitle:'Centres d\'intérêt',
+            traits:['Rigueur analytique','Vision stratégique','Orientation résultats','Communication transverse','Curiosité technologique','Leadership'],
+            fLbl:['Prénom','Nom','Email','Type d\'opportunité','Objet','Message'],
+            fsel:['Sélectionner...','CDI — Poste permanent','Freelance / Contractor','Mission de consulting','Partenariat','Autre'],
+            submit:'Envoyer le message →',
+            footer:'© 2026 — Senior Consultant · Risk & Finance Transformation · Basel III/IV<br>Paris, France · Mobilité internationale',
+            skills:[
+                {title:'Risk & Reglementation',desc:'Modelisation credit (LGD, PD, EAD), calibration Bale IV et optimisation RWA dans des environnements CIB complexes.'},
+                {title:'Reporting Reglementaire',desc:'Integration FINREP/COREP, validation des donnees reglementaires et conformite aux standards EBA.'},
+                {title:'Data Analysis & BI',desc:'Construction de dashboards de performance risque et reporting sur des volumes 1M+ d\'enregistrements.'},
+                {title:'Gestion de Projet',desc:'Cadrage business, recueil d\'exigences, coordination Risk/IT/Compliance et pilotage Agile & V-Model.'},
+                {title:'Performance Management',desc:'Pilotage de la performance operationnelle, monitoring des KPIs et amelioration continue des processus.'},
+                {title:'Marches Financiers & FX',desc:'Experience operationnelle sur desk FX : suivi P&L, pricing, analyse de marche via Bloomberg Terminal.'}
+            ],
+            skillBars:[
+                ['Bale III/IV','Credit Risk'],
+                ['FINREP / COREP','Data Quality'],
+                ['Power BI','SQL'],
+                ['Gestion de projet','Coordination'],
+                ['KPI Monitoring','Process Improvement'],
+                ['Bloomberg / Marches','Analyse FX']
+            ],
+            exp:[
+                {date:'Sep 2025 — Present',location:'Paris, France · Hybride',type:'CDI — Inetum',title:'Business Analyst — Performance Management & Production Monitoring',company:'Societe Generale',bullets:['Pilotage du suivi de l\'activite de production sur l\'application de gestion de la performance du Groupe','Analyse et suivi des KPIs operationnels pour accompagner le pilotage de la performance a l\'echelle du Groupe','Coordination avec les equipes IT et metiers pour garantir la qualite des donnees et la fiabilite du reporting','Amelioration continue des processus de monitoring et des tableaux de bord de pilotage']},
+                {date:'Avr 2025 — Aout 2025',location:'Paris, France · Hybride',type:'CDI — Inetum',title:'Business Analyst — FINREP Regulatory Reporting Integration',company:'BPCE',bullets:['Integration des frameworks de reporting reglementaire FINREP au sein du SI bancaire','Analyse des exigences fonctionnelles et production des specifications pour l\'integration des flux de donnees','Coordination avec les equipes Finance, Risk et IT pour la conformite aux standards EBA','Recette (UAT) et validation des donnees reglementaires pour les remises superviseurs']},
+                {date:'Jan 2023 — Mar 2025 · 2 ans 3 mois',location:'Saint-Quentin-en-Yvelines · Hybride',type:'CDI — Inetum',title:'Business Analyst — Credit Risk & Basel III/IV Transformation',company:'Credit Agricole CIB',bullets:['Pilotage de la validation des flux de risques reglementaires (UAT) pour les programmes Basel III/IV','Production de specifications fonctionnelles pour les flux de donnees Credit Risk','Optimisation des parametres de risques (LGD/PD/EAD) — contribution a la reduction des RWA','Analyse des ecarts IRB vs. Approche Standard et quantification de l\'impact RWA','Coordination transverse Risk, Compliance, Finance et IT']},
+                {date:'Juin 2022 — Dec 2022 · 7 mois',location:'Montrouge, France',type:'CDD',title:'Business Analyst — Regulatory Compliance & Process Transformation',company:'CACEIS (Credit Agricole Group)',bullets:['Cadrage metier et recueil des besoins pour la refonte des outils de suivi de conformite','Conception de rapports reglementaires et adaptation des processus de conformite','Creation de documentation fonctionnelle et cartographies de processus','Coordination avec Legal, Compliance et IT pour la mise en conformite']},
+                {date:'Sep 2021 — Fev 2022 · 6 mois',location:'Paris, France',type:'Stage',title:'Assistant Trader — FX & Interest Rate Derivatives',company:'Compagnie Financiere Tradition',bullets:['Suivi quotidien des positions et du P&L des brokers sur les produits de taux et FX','Participation au pricing de swaps, repos et forwards via Bloomberg Terminal','Production de reportings de performance et analyses d\'ecarts pour le management']}
+            ],
+            edu:[
+                {degree:'MSc — Financial Engineering',period:'2021 — 2022 · Paris, France'},
+                {degree:'Master — Risk Management',period:'2018 — 2020 · Abidjan, Cote d\'Ivoire'},
+                {degree:'Licence — Sciences Economiques',period:'2015 — 2018 · Abidjan, Cote d\'Ivoire'}
+            ],
+            certs:[
+                {name:'SAFe® POPM 6.0',status:'Scaled Agile · Certifie'},
+                {name:'NSF 313p — Ingenierie Financiere (Niveau 7)',status:'France Competences · Certifie'},
+                {name:'Certification AMF',status:'Autorite des Marches Financiers · Certifie'},
+                {name:'Bloomberg Market Concepts (BMC)',status:'Bloomberg LP · Certifie'},
+                {name:'PMP — Project Management Professional',status:'PMI · En cours'}
+            ],
+            faq:[
+                {q:'Quels types de missions realisez-vous ?',a:'J\'interviens sur des missions de Business Analysis en Risk & Finance Transformation : implementation Basel III/IV, reporting reglementaire (FINREP, COREP), modelisation credit risk (LGD/PD/EAD), optimisation RWA, et coordination cross-fonctionnelle Risk/IT/Compliance. Je couvre l\'ensemble du cycle projet, du cadrage metier a la recette (UAT).'},
+                {q:'Dans quels secteurs intervenez-vous ?',a:'J\'interviens principalement dans la banque de financement et d\'investissement (CIB), la banque de detail, l\'asset servicing et les institutions financieres soumises aux reglementations EBA. Mes clients incluent Credit Agricole CIB, Societe Generale, BPCE et CACEIS.'},
+                {q:'Quelle est votre disponibilite geographique ?',a:'Base en region parisienne, j\'interviens en France en mode hybride ou sur site. Je suis egalement ouvert a la mobilite internationale selon les projets (Europe, Afrique, Amerique du Nord).'},
+                {q:'Quels sont vos modes d\'intervention ?',a:'CDI, freelance ou contractor selon les besoins du projet. Je m\'adapte a votre organisation et peux demarrer rapidement grace a mon experience multi-clients et ma connaissance approfondie des environnements bancaires reglementaires.'},
+                {q:'Comment se deroule une mission type ?',a:'Chaque mission debute par un cadrage metier (recueil des besoins, cartographie des processus), suivi de la phase d\'analyse fonctionnelle (specifications, expression de besoins), puis la coordination avec les equipes IT pour l\'implementation, et enfin la recette (UAT) et le reporting aux parties prenantes. J\'anime les comites de pilotage tout au long du projet.'}
+            ],
+            faqTitle:'Questions <em>frequentes</em>'
+        },
+        en:{
+            nav:['Profile','Expertise','Experience','FAQ','Contact'],
+            cta:'Contact me',
+            avail:'Available — Paris, France',
+            heroTitle:'Business Analyst <span>·</span> Risk & Finance Transformation<br>Credit Risk <span>·</span> Basel III/IV',
+            heroDesc:'4+ years of experience in Risk & Finance Transformation, Basel III/IV compliance and regulatory reporting within France\'s largest banking institutions. Based in France, internationally mobile.',
+            btn1:'My experience',
+            btn2:'Let\'s work together',
+            stats:['Years of experience','Regulatory records processed','Major institutions'],
+            secs:['My <em>profile</em>','My <em>expertise</em>','My <em>experience</em>'],
+            aboutIntro:'Senior Business Analyst specialized in Risk & Finance Transformation within corporate and investment banking (CIB).',
+            aboutBody:'With over 4 years at Crédit Agricole CIB, Société Générale, BPCE SA and CACEIS, I have built solid expertise in Basel III/IV projects, credit risk modeling (LGD, PD, EAD), FINREP regulatory reporting and RWA optimization. My approach combines analytical rigor, data mastery and technological awareness to support Risk, Finance and IT departments in their regulatory transformation challenges.',
+            infoLbl:['Location','Availability','Education','Languages'],
+            iv1:'Available<span class="info-sub">Full-time · Freelance · Contractor</span>',
+            iv3:'French (native)<span class="info-sub">English — B2 CEFR</span>',
+            emailBtn:'✉ Send an email',
+            skillsIntro:'A rare combination of financial rigor, data mastery and technological awareness — forged in demanding banking environments.',
+            toolsTitle:'Tools & Technologies',
+            expIntro:'A career built in demanding financial environments, from trading floors to risk teams at France\'s largest banks.',
+            eduTitle:'Academic background',
+            certsLabel:'Certifications',
+            ctcHeadline:'Available for any<br><em>opportunity in France & internationally.</em>',
+            ctcBody:'Whether you want to hire a Business Analyst expert in Risk & Finance Transformation, collaborate on a regulatory project or simply discuss your challenges — I am available and responsive.',
+            chLbl:['Email','LinkedIn'],
+            interestsTitle:'Interests',
+            traits:['Analytical rigor','Strategic vision','Results-oriented','Cross-functional communication','Tech curiosity','Leadership'],
+            fLbl:['First name','Last name','Email','Opportunity type','Subject','Message'],
+            fsel:['Select...','Full-time position','Freelance / Contractor','Consulting engagement','Partnership','Other'],
+            submit:'Send message →',
+            footer:'© 2026 — Senior Consultant · Risk & Finance Transformation · Basel III/IV<br>Paris, France · International mobility',
+            skills:[
+                {title:'Risk & Finance Transformation',desc:'Implementation of Basel III/IV regulatory frameworks, credit risk modeling (LGD/PD/EAD) and RWA optimization.'},
+                {title:'Regulatory Reporting',desc:'FINREP/COREP integration, regulatory data validation and compliance with EBA standards.'},
+                {title:'Data Analysis & BI',desc:'Building risk performance dashboards and reporting across 1M+ record datasets.'},
+                {title:'Project Management',desc:'Business scoping, requirements gathering, Risk/IT/Compliance coordination and Agile & V-Model delivery.'},
+                {title:'Performance Management',desc:'Operational performance monitoring, KPI tracking and continuous process improvement.'},
+                {title:'Financial Markets & FX',desc:'Hands-on FX desk experience: P&L monitoring, pricing and market analysis via Bloomberg Terminal.'}
+            ],
+            skillBars:[
+                ['Basel III/IV','Credit Risk'],
+                ['FINREP / COREP','Data Quality'],
+                ['Power BI','SQL'],
+                ['Project Management','Coordination'],
+                ['KPI Monitoring','Process Improvement'],
+                ['Bloomberg / Markets','FX Analysis']
+            ],
+            exp:[
+                {date:'Sep 2025 — Present',location:'Paris, France · Hybrid',type:'Permanent — Inetum',title:'Business Analyst — Performance Management & Production Monitoring',company:'Société Générale',bullets:['Oversight of production activity tracking on the Group performance management application','Operational KPI analysis and monitoring to support Group-wide performance management','Coordination with IT and business teams to ensure data quality and reporting reliability','Continuous improvement of monitoring processes and management dashboards']},
+                {date:'Apr 2025 — Aug 2025',location:'Paris, France · Hybrid',type:'Permanent — Inetum',title:'Business Analyst — FINREP Regulatory Reporting Integration',company:'BPCE',bullets:['Integration of FINREP regulatory reporting frameworks into the banking information system','Functional requirements analysis and specifications for data flow integration','Coordination with Finance, Risk and IT teams for EBA standards compliance','User Acceptance Testing (UAT) and regulatory data validation for supervisory submissions']},
+                {date:'Jan 2023 — Mar 2025 · 2 years 3 months',location:'Saint-Quentin-en-Yvelines · Hybrid',type:'Permanent — Inetum',title:'Business Analyst — Credit Risk & Basel III/IV Transformation',company:'Crédit Agricole CIB',bullets:['Led regulatory risk data flow validation (UAT) for Basel III/IV programs','Produced functional specifications for Credit Risk data flows','Optimized risk parameters (LGD/PD/EAD) — contributed to RWA reduction','Analyzed IRB vs. Standardized Approach gaps and quantified RWA impact','Cross-functional coordination across Risk, Compliance, Finance and IT']},
+                {date:'Jun 2022 — Dec 2022 · 7 months',location:'Montrouge, France',type:'Fixed-term',title:'Business Analyst — Regulatory Compliance & Process Transformation',company:'CACEIS (Crédit Agricole Group)',bullets:['Business scoping and requirements gathering for compliance monitoring tool redesign','Designed regulatory reports and adapted compliance processes','Created functional documentation and process maps','Coordinated with Legal, Compliance and IT for regulatory alignment']},
+                {date:'Sep 2021 — Feb 2022 · 6 months',location:'Paris, France',type:'Internship',title:'Junior Trader — FX & Interest Rate Derivatives',company:'Compagnie Financière Tradition',bullets:['Daily position and P&L monitoring for brokers on rates and FX products','Participated in swap, repo and forward pricing via Bloomberg Terminal','Produced performance reports and variance analyses for management']}
+            ],
+            edu:[
+                {degree:'MSc — Financial Engineering',period:'2021 — 2022 · Paris, France'},
+                {degree:'Master\'s — Risk Management',period:'2018 — 2020 · Abidjan, Ivory Coast'},
+                {degree:'Bachelor\'s — Economics',period:'2015 — 2018 · Abidjan, Ivory Coast'}
+            ],
+            certs:[
+                {name:'SAFe® POPM 6.0',status:'Scaled Agile · Certified'},
+                {name:'NSF 313p — Financial Engineering (Level 7)',status:'France Compétences · Certified'},
+                {name:'AMF Certification',status:'French Financial Markets Authority · Certified'},
+                {name:'Bloomberg Market Concepts (BMC)',status:'Bloomberg LP · Certified'},
+                {name:'PMP — Project Management Professional',status:'PMI · In progress'}
+            ],
+            faq:[
+                {q:'What types of engagements do you deliver?',a:'I deliver Business Analysis engagements in Risk & Finance Transformation: Basel III/IV implementation, regulatory reporting (FINREP, COREP), credit risk modeling (LGD/PD/EAD), RWA optimization, and cross-functional coordination across Risk/IT/Compliance. I cover the full project lifecycle, from business scoping to User Acceptance Testing (UAT).'},
+                {q:'Which industries do you work in?',a:'I work primarily in corporate and investment banking (CIB), retail banking, asset servicing and financial institutions subject to EBA regulations. My clients include Crédit Agricole CIB, Société Générale, BPCE and CACEIS.'},
+                {q:'What is your geographic availability?',a:'Based in the Paris region, I work across France in hybrid or on-site mode. I am also open to international mobility depending on the project (Europe, Africa, North America).'},
+                {q:'What are your engagement models?',a:'Permanent, freelance or contractor depending on project needs. I adapt to your organization and can start quickly thanks to my multi-client experience and deep knowledge of regulated banking environments.'},
+                {q:'What does a typical engagement look like?',a:'Each engagement begins with business scoping (requirements gathering, process mapping), followed by functional analysis (specifications, business requirements), then coordination with IT teams for implementation, and finally User Acceptance Testing (UAT) and stakeholder reporting. I facilitate steering committees throughout the project.'}
+            ],
+            faqTitle:'Frequently Asked <em>Questions</em>'
+        }
     };
     function g(id){return document.getElementById(id)}
     function toggleLang(){
@@ -1547,7 +1693,7 @@
         applyLang(currentLang);
     }
     function applyLang(l){
-        var t=T[l],i;
+        var t=T[l],i,j;
         for(i=0;i<5;i++){var nl=g('nl'+i);if(nl)nl.textContent=t.nav[i]}
         var c=g('navCta');if(c)c.textContent=t.cta;
         var a=g('heroAvail');if(a)a.textContent=t.avail;
@@ -1577,6 +1723,75 @@
         var sel=g('fSelect');if(sel){sel.innerHTML='';t.fsel.forEach(function(o,idx){var op=document.createElement('option');op.value=idx===0?'':o;op.textContent=o;if(idx===0){op.disabled=true;op.selected=true}sel.appendChild(op)})}
         var sb=g('fSubmit');if(sb&&!sb.disabled)sb.textContent=t.submit;
         var fc=g('footerCopy');if(fc)fc.innerHTML=t.footer;
+
+        // Skills cards
+        var skillCards=document.querySelectorAll('.skill-card');
+        for(i=0;i<skillCards.length&&i<t.skills.length;i++){
+            var h3=skillCards[i].querySelector('h3');
+            var p=skillCards[i].querySelector('p');
+            if(h3)h3.innerHTML=t.skills[i].title;
+            if(p)p.innerHTML=t.skills[i].desc;
+        }
+
+        // Skill bar labels
+        for(i=0;i<skillCards.length&&i<t.skillBars.length;i++){
+            var barLabels=skillCards[i].querySelectorAll('.skill-bar-label');
+            for(var bi=0;bi<barLabels.length&&bi<t.skillBars[i].length;bi++){
+                var sp=barLabels[bi].querySelector('span:first-child');
+                if(sp)sp.textContent=t.skillBars[i][bi];
+            }
+        }
+
+        // Timeline items
+        var timelineItems=document.querySelectorAll('.timeline-item');
+        for(i=0;i<timelineItems.length&&i<t.exp.length;i++){
+            var dateEl=timelineItems[i].querySelector('.timeline-date');
+            var locEl=timelineItems[i].querySelector('.timeline-location');
+            var typeEl=timelineItems[i].querySelector('.timeline-type');
+            var titleEl=timelineItems[i].querySelector('.timeline-title');
+            var companyEl=timelineItems[i].querySelector('.timeline-company');
+            var bulletsEls=timelineItems[i].querySelectorAll('.timeline-bullets li');
+
+            if(dateEl)dateEl.textContent=t.exp[i].date;
+            if(locEl)locEl.textContent=' · '+t.exp[i].location;
+            if(typeEl)typeEl.textContent=t.exp[i].type;
+            if(titleEl)titleEl.innerHTML=t.exp[i].title;
+            if(companyEl)companyEl.textContent=t.exp[i].company;
+            for(j=0;j<bulletsEls.length&&j<t.exp[i].bullets.length;j++){
+                bulletsEls[j].innerHTML=t.exp[i].bullets[j];
+            }
+        }
+
+        // Education cards
+        var eduCards=document.querySelectorAll('.edu-card');
+        for(i=0;i<eduCards.length&&i<t.edu.length;i++){
+            var degreeEl=eduCards[i].querySelector('.edu-degree');
+            var periodEl=eduCards[i].querySelector('.edu-period');
+            if(degreeEl)degreeEl.textContent=t.edu[i].degree;
+            if(periodEl)periodEl.textContent=t.edu[i].period;
+        }
+
+        // Certification items
+        var certItems=document.querySelectorAll('.cert-item');
+        for(i=0;i<certItems.length&&i<t.certs.length;i++){
+            var nameEl=certItems[i].querySelector('.cert-name');
+            var statusEl=certItems[i].querySelector('.cert-status');
+            if(nameEl)nameEl.textContent=t.certs[i].name;
+            if(statusEl)statusEl.textContent=t.certs[i].status;
+        }
+
+        // FAQ section
+        var faqTitle=g('sec-faq');
+        if(faqTitle)faqTitle.innerHTML=t.faqTitle;
+
+        // FAQ items
+        var faqItems=document.querySelectorAll('.faq-item');
+        for(i=0;i<faqItems.length&&i<t.faq.length;i++){
+            var qEl=faqItems[i].querySelector('.faq-question span:first-child');
+            var aEl=faqItems[i].querySelector('.faq-answer-inner');
+            if(qEl)qEl.textContent=t.faq[i].q;
+            if(aEl)aEl.innerHTML=t.faq[i].a;
+        }
     }
 
     /* ═══════ MOBILE MENU ═══════ */
