@@ -1,0 +1,340 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Choisissez votre profil, entrez vos chiffres et voyez votre dossier de crédit comme le voit la banque : taux d'endettement, reste à vivre, recommandations et justificatifs.">
+<meta name="author" content="Cyrille Nenin">
+<meta property="og:title" content="Ce que la banque regarde avant de vous prêter">
+<meta property="og:description" content="Votre dossier de crédit vu par la banque, selon votre profil.">
+<style>body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>Ce que la banque regarde</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@700;800&display=swap">
+<style>
+/* Layout : une colonne façon dossier bancaire, du profil vers le verdict puis la liste de pièces */
+:root{
+  --bg:#EEF3F7; --surface:#FFFFFF; --ink:#0E2A43; --muted:#4A6178; --line:#D3DEE8;
+  --accent:#E8B04B; --accent-ink:#8A5A00; --accent-soft:#FCEFD3;
+  --ok:#1F7A4D; --ok-soft:#E1F3E9; --warn:#A86200; --warn-soft:#FDF0DA; --bad:#B3261E; --bad-soft:#FBE4E2;
+  --hero:#0E2A43; --hero-ink:#FFFFFF; --hero-muted:#B9CCDD; --track:#E3EAF1;
+  --f-display:"Inter Tight","Inter",system-ui,sans-serif; --f-body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0A1C2D; --surface:#11283D; --ink:#E8EFF5; --muted:#9FB3C6; --line:#24405A;
+  --accent:#E8B04B; --accent-ink:#F2C778; --accent-soft:#3A2E14;
+  --ok:#5CC995; --ok-soft:#123A29; --warn:#F0B35A; --warn-soft:#3B2C12; --bad:#F08A82; --bad-soft:#3E1A18;
+  --hero:#0E2A43; --hero-ink:#FFFFFF; --hero-muted:#B9CCDD; --track:#1C364E; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0A1C2D; --surface:#11283D; --ink:#E8EFF5; --muted:#9FB3C6; --line:#24405A;
+  --accent:#E8B04B; --accent-ink:#F2C778; --accent-soft:#3A2E14;
+  --ok:#5CC995; --ok-soft:#123A29; --warn:#F0B35A; --warn-soft:#3B2C12; --bad:#F08A82; --bad-soft:#3E1A18;
+  --hero:#0E2A43; --hero-ink:#FFFFFF; --hero-muted:#B9CCDD; --track:#1C364E; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-font-smoothing:antialiased}
+.hero{background:var(--hero);color:var(--hero-ink)}
+.wrap{max-width:720px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.hero .wrap{padding-block:36px 32px}
+.eyebrow{font-size:12px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+h1{font-family:var(--f-display);font-weight:800;font-size:clamp(30px,7vw,44px);line-height:1.05;letter-spacing:-.02em;margin:12px 0 0;text-wrap:balance}
+.lede{color:var(--hero-muted);font-size:17px;margin:14px 0 0;max-width:34em}
+.by{margin-top:18px;font-size:13px;color:var(--hero-muted)}
+.by b{color:var(--hero-ink)}
+main .wrap{padding-block:24px 48px;display:flex;flex-direction:column;gap:20px}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:22px 20px}
+h2{font-family:var(--f-display);font-weight:800;font-size:22px;line-height:1.15;margin:0;letter-spacing:-.01em}
+.step{display:flex;align-items:baseline;gap:10px;margin-bottom:14px}
+.step span{font-size:12px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--accent-ink);white-space:nowrap}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips input{position:absolute;opacity:0;pointer-events:none}
+.chips label{border:1.5px solid var(--line);border-radius:999px;padding:9px 14px;font-weight:600;font-size:15px;cursor:pointer;color:var(--ink);background:var(--surface)}
+.chips input:checked+label{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+.chips input:focus-visible+label{outline:3px solid var(--accent);outline-offset:2px}
+.sub{font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin:18px 0 8px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media (max-width:520px){.grid{grid-template-columns:1fr}}
+.field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.field label{font-size:14px;font-weight:600}
+.field small{color:var(--muted);font-size:12.5px;line-height:1.35}
+.inp{display:flex;align-items:center;border:1.5px solid var(--line);border-radius:12px;background:var(--bg);overflow:hidden}
+.inp:focus-within{border-color:var(--accent)}
+.inp input{flex:1;min-width:0;border:0;background:transparent;color:var(--ink);font:600 17px var(--f-body);padding:11px 12px;font-variant-numeric:tabular-nums;outline:none}
+.inp em{font-style:normal;color:var(--muted);font-size:14px;padding-right:12px;white-space:nowrap}
+.example{display:inline-block;margin-top:14px;font-size:12.5px;color:var(--accent-ink);background:var(--accent-soft);border-radius:8px;padding:5px 10px}
+.verdict{display:flex;flex-direction:column;gap:16px}
+.rate{display:flex;align-items:flex-end;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.rate .big{font-family:var(--f-display);font-weight:800;font-size:56px;line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.02em}
+.rate .lbl{font-size:14px;color:var(--muted);margin-top:4px}
+.pill{border-radius:999px;padding:7px 14px;font-weight:700;font-size:14px;white-space:nowrap}
+.pill.ok{background:var(--ok-soft);color:var(--ok)}
+.pill.warn{background:var(--warn-soft);color:var(--warn)}
+.pill.bad{background:var(--bad-soft);color:var(--bad)}
+.gauge{position:relative;height:14px;border-radius:999px;background:var(--track);overflow:visible}
+.gauge .fill{position:absolute;left:0;top:0;bottom:0;border-radius:999px;background:var(--ok);transition:width .25s ease}
+.gauge .mark{position:absolute;top:-6px;bottom:-6px;width:2px;background:var(--ink)}
+.scale{position:relative;height:18px;font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+.scale span{position:absolute;transform:translateX(-50%);white-space:nowrap}
+.scale span:first-child{transform:none}
+.scale span:last-child{transform:translateX(-100%)}
+.scale b{color:var(--ink)}
+.msg{font-size:15px;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.kpi{border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0}
+.kpi .v{font-family:var(--f-display);font-weight:800;font-size:22px;font-variant-numeric:tabular-nums;line-height:1.15}
+.kpi .k{font-size:13px;color:var(--muted);line-height:1.3;margin-top:3px}
+ul.check{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px}
+ul.check li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start}
+ul.check li::before{content:"";width:18px;height:18px;margin-top:3px;border-radius:50%;border:2.5px solid var(--accent)}
+ul.check b{display:block}
+ul.check p{margin:2px 0 0;color:var(--muted);font-size:14.5px}
+.docs{display:flex;flex-wrap:wrap;gap:8px}
+.docs span{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:7px 11px;font-size:14px;font-weight:500}
+.docs span.own{background:var(--accent-soft);border-color:transparent;color:var(--accent-ink);font-weight:600}
+.note{font-size:13px;color:var(--muted);line-height:1.5}
+.note p{margin:0 0 8px}
+.foot{font-size:13px;color:var(--muted);text-align:center;padding-top:8px}
+@media (prefers-reduced-motion:reduce){.gauge .fill{transition:none}}
+</style>
+</head>
+<body>
+
+
+<header class="hero"><div class="wrap">
+  <div class="eyebrow">Dossier de crédit</div>
+  <h1>Ce que la banque regarde avant de vous prêter</h1>
+  <p class="lede">Choisissez votre profil, entrez vos chiffres, et voyez votre dossier comme le voit la banque.</p>
+  <div class="by">Par <b>Cyrille Nenin</b>, Business Analyst en risque de crédit</div>
+</div></header>
+
+<main><div class="wrap">
+
+<section class="panel" aria-labelledby="t1">
+  <div class="step"><span>Étape 1</span><h2 id="t1">Votre situation</h2></div>
+  <div class="chips" role="radiogroup" aria-label="Votre profil" id="profiles"></div>
+  <div class="sub">Votre projet</div>
+  <div class="chips" role="radiogroup" aria-label="Type de projet">
+    <input type="radio" name="proj" id="proj-immo" value="immo" checked><label for="proj-immo">Achat immobilier</label>
+    <input type="radio" name="proj" id="proj-conso" value="conso"><label for="proj-conso">Crédit auto ou conso</label>
+  </div>
+</section>
+
+<section class="panel" aria-labelledby="t2">
+  <div class="step"><span>Étape 2</span><h2 id="t2">Vos chiffres</h2></div>
+  <div class="grid">
+    <div class="field"><label for="rev">Revenus nets mensuels du foyer</label><div class="inp"><input id="rev" inputmode="decimal" value="3 000"><em>€ / mois</em></div><small>Avant prélèvement à la source.</small></div>
+    <div class="field"><label for="cur">Crédits en cours</label><div class="inp"><input id="cur" inputmode="decimal" value="180"><em>€ / mois</em></div><small>Auto, conso, étudiant : total des mensualités.</small></div>
+    <div class="field"><label for="amt">Montant à emprunter</label><div class="inp"><input id="amt" inputmode="decimal" value="170 000"><em>€</em></div></div>
+    <div class="field"><label for="dur">Durée</label><div class="inp"><input id="dur" inputmode="decimal" value="25"><em>ans</em></div></div>
+    <div class="field"><label for="rate">Taux annuel</label><div class="inp"><input id="rate" inputmode="decimal" value="3,5"><em>%</em></div><small>Assurance emprunteur comprise.</small></div>
+    <div class="field"><label for="oth">Loyer et autres charges fixes après le projet</label><div class="inp"><input id="oth" inputmode="decimal" value="0"><em>€ / mois</em></div><small>Loyer si vous restez locataire, pension versée.</small></div>
+    <div class="field"><label for="ppl">Personnes dans le foyer</label><div class="inp"><input id="ppl" inputmode="numeric" value="1"><em>pers.</em></div></div>
+  </div>
+  <span class="example">Chiffres d'exemple : remplacez-les par les vôtres</span>
+</section>
+
+<section class="panel verdict" aria-labelledby="t3" aria-live="polite">
+  <div class="step" style="margin-bottom:0"><span>Résultat</span><h2 id="t3">Votre taux d'endettement</h2></div>
+  <div class="rate">
+    <div><div class="big" id="o-rate">0 %</div><div class="lbl">de vos revenus partent en crédits</div></div>
+    <div class="pill ok" id="o-pill">Confortable</div>
+  </div>
+  <div>
+    <div class="gauge"><div class="fill" id="o-fill"></div><div class="mark" style="left:70%"></div></div>
+    <div class="scale"><span style="left:0">0 %</span><span style="left:70%"><b>35 %</b></span><span style="left:100%">50 %</span></div>
+  </div>
+  <p class="msg" id="o-msg"></p>
+  <div class="kpis">
+    <div class="kpi"><div class="v" id="o-pay">0 €</div><div class="k">Mensualité du projet</div></div>
+    <div class="kpi"><div class="v" id="o-max">0 €</div><div class="k">Mensualité maximale à 35 %</div></div>
+    <div class="kpi"><div class="v" id="o-cap">0 €</div><div class="k">Montant maximal sur cette durée</div></div>
+    <div class="kpi"><div class="v" id="o-rav">0 €</div><div class="k" id="o-ravk">Reste à vivre par mois</div></div>
+  </div>
+</section>
+
+<section class="panel" aria-labelledby="t7">
+  <div class="step"><span>Recommandations</span><h2 id="t7">Pour maximiser vos chances</h2></div>
+  <div class="sub" style="margin-top:0">Pour votre dossier</div>
+  <ul class="check" id="o-reco"></ul>
+  <div class="sub">Dans tous les cas</div>
+  <ul class="check">
+    <li><div><b>Soignez vos 3 derniers relevés</b><p>Aucun découvert, aucun prélèvement rejeté, pas de paris en ligne. Ce sont les premières pages que la banque lit.</p></div></li>
+    <li><div><b>Épargnez chaque mois avant la demande</b><p>Un virement automatique vers votre épargne, même modeste, se voit sur vos relevés et prouve que vous savez mettre de côté.</p></div></li>
+    <li><div><b>Aucun nouveau crédit avant la demande</b><p>Même un paiement en 4 fois ou un crédit renouvelable s'ajoute à vos charges.</p></div></li>
+    <li><div><b>Clôturez les réserves de crédit inutilisées</b><p>Une réserve ouverte peut être comptée comme une charge, même si vous ne vous en servez pas.</p></div></li>
+    <li><div><b>Gardez de l'épargne après le projet</b><p>Ne videz pas tout dans l'apport. Une épargne de côté rassure la banque sur votre capacité à faire face à un imprévu.</p></div></li>
+    <li><div><b>Comparez plusieurs banques</b><p>Chaque banque a ses propres critères. Un refus dans l'une n'empêche pas un accord dans une autre, et un courtier peut faire la comparaison pour vous.</p></div></li>
+    <li><div><b>Arrivez avec un dossier complet</b><p>Tous les justificatifs listés plus bas, classés et à jour. Un dossier complet est traité plus vite et inspire confiance.</p></div></li>
+  </ul>
+</section>
+
+<section class="panel" aria-labelledby="t4">
+  <div class="step"><span>Votre profil</span><h2 id="t4">Ce que la banque regarde pour vous</h2></div>
+  <ul class="check" id="o-prof"></ul>
+</section>
+
+<section class="panel" aria-labelledby="t5">
+  <div class="step"><span>Pour tout le monde</span><h2 id="t5">Ce qu'elle regarde aussi</h2></div>
+  <ul class="check">
+    <li><div><b>Vos 3 derniers relevés de compte</b><p>Découverts, prélèvements rejetés, paris en ligne, virements réguliers vers l'épargne : vos relevés racontent comment vous gérez votre argent.</p></div></li>
+    <li><div><b>Votre épargne après le projet</b><p>Ce qui vous reste de côté montre que vous pouvez faire face à un imprévu.</p></div></li>
+    <li id="apport"><div><b>Votre apport</b><p>Pour un achat immobilier, la banque attend souvent un apport qui couvre au moins les frais de notaire.</p></div></li>
+    <li><div><b>Vos réserves de crédit renouvelable</b><p>Même inutilisée, une réserve peut être comptée dans vos charges. Clôturez celles dont vous ne vous servez pas avant de déposer votre demande.</p></div></li>
+    <li><div><b>Les fichiers de la Banque de France</b><p>Un incident de remboursement inscrit au FICP bloque la plupart des demandes.</p></div></li>
+  </ul>
+</section>
+
+<section class="panel" aria-labelledby="t6">
+  <div class="step"><span>À préparer</span><h2 id="t6">Vos justificatifs</h2></div>
+  <div class="docs" id="o-docs"></div>
+</section>
+
+<section class="note">
+  <p>Outil indicatif. Chaque banque applique ses propres critères, et ce n'est pas un conseil financier.</p>
+  <p>Le repère de 35 % vient du Haut Conseil de stabilité financière pour le crédit immobilier : taux d'endettement de 35 % maximum, assurance comprise, sur 25 ans maximum (27 ans dans le neuf). Pour un crédit auto ou conso, les banques utilisent souvent le même repère, et certaines ajoutent le loyer au calcul.</p>
+  <p>Aucune donnée n'est enregistrée : vos chiffres restent sur votre écran.</p>
+</section>
+<div class="foot">Cyrille Nenin · Business Analyst, risque de crédit</div>
+
+</div></main>
+
+<script>
+(function(){
+  var PROFILES = {
+    cdi: {label:"CDI", items:[
+      ["Votre période d'essai","Elle doit être terminée : c'est souvent la première condition."],
+      ["Votre ancienneté","Plus elle est longue dans l'entreprise, plus le dossier rassure."],
+      ["Vos primes et votre variable","Retenus seulement s'ils sont réguliers, souvent sur 2 ou 3 ans."]],
+      docs:["3 derniers bulletins de salaire","Contrat de travail ou attestation employeur"]},
+    essai: {label:"CDI en période d'essai", items:[
+      ["La fin de la période d'essai","La plupart des banques l'attendent avant d'accorder un crédit."],
+      ["Un dossier prêt à l'avance","Préparez tout maintenant et déposez-le le jour où la période d'essai se termine."],
+      ["Un co-emprunteur","Une personne en poste stable à vos côtés peut débloquer la situation."]],
+      docs:["Contrat de travail","Bulletins de salaire disponibles"]},
+    cdd: {label:"CDD ou intérim", items:[
+      ["La continuité de vos revenus","La banque regarde souvent vos revenus sur 2 à 3 ans."],
+      ["Une moyenne de vos revenus","Elle retient en général la moyenne sur cette période, pas votre meilleur mois."],
+      ["La stabilité dans votre secteur","Des missions régulières dans le même métier rassurent plus que le type de contrat."]],
+      docs:["Contrats des 2 à 3 dernières années","Bulletins de salaire","Attestations France Travail si besoin"]},
+    indep: {label:"Indépendant", items:[
+      ["Votre ancienneté d'activité","La banque demande souvent 2 à 3 ans d'activité."],
+      ["Vos revenus après charges","Elle retient en général la moyenne de vos revenus nets sur ces années."],
+      ["Votre trésorerie","Des comptes pro et perso séparés et une trésorerie solide rassurent."]],
+      docs:["2 à 3 derniers bilans ou déclarations de revenus","Extrait Kbis ou avis de situation Insee","Relevés du compte professionnel"]},
+    fonct: {label:"Fonctionnaire", items:[
+      ["Votre statut","Titulaire, la stabilité de l'emploi est un atout fort. Contractuel, choisissez plutôt CDI ou CDD."],
+      ["Vos comptes et votre endettement","Avec un emploi stable, ce sont eux qui font la différence."],
+      ["Vos primes","Retenues si elles sont régulières sur vos bulletins."]],
+      docs:["3 derniers bulletins de salaire","Arrêté de titularisation"]},
+    first: {label:"Premier emploi", items:[
+      ["La tenue de vos comptes","Sans historique de revenus, vos relevés parlent pour vous : pas de découvert, des dépenses maîtrisées."],
+      ["Une épargne, même modeste","Elle montre que vous savez mettre de côté chaque mois."],
+      ["Un garant ou un co-emprunteur","Il peut renforcer un dossier encore jeune."]],
+      docs:["Contrat de travail","Bulletins de salaire disponibles","Justificatifs d'épargne"]}
+  };
+  var COMMON = ["Pièce d'identité","Justificatif de domicile","3 derniers relevés de compte","2 derniers avis d'imposition"];
+
+  var box = document.getElementById("profiles");
+  Object.keys(PROFILES).forEach(function(k,i){
+    var inp = document.createElement("input");
+    inp.type="radio"; inp.name="prof"; inp.id="prof-"+k; inp.value=k; if(i===0) inp.checked=true;
+    var lab = document.createElement("label"); lab.htmlFor=inp.id; lab.textContent=PROFILES[k].label;
+    box.appendChild(inp); box.appendChild(lab);
+  });
+
+  var eur = new Intl.NumberFormat("fr-FR",{maximumFractionDigits:0});
+  function num(id){
+    var v = document.getElementById(id).value.replace(/\s| | /g,"").replace(",",".");
+    var n = parseFloat(v); return isFinite(n) && n>0 ? n : 0;
+  }
+  function money(n){ return eur.format(Math.round(n))+" €"; }
+  function payment(P, years, ratePct){
+    var n = Math.round(years*12); if(!P || !n) return 0;
+    var r = ratePct/100/12; if(!r) return P/n;
+    return P*r/(1-Math.pow(1+r,-n));
+  }
+  function capital(m, years, ratePct){
+    var n = Math.round(years*12); if(m<=0 || !n) return 0;
+    var r = ratePct/100/12; if(!r) return m*n;
+    return m*(1-Math.pow(1+r,-n))/r;
+  }
+  function el(id){ return document.getElementById(id); }
+
+  function render(){
+    var prof = document.querySelector('input[name="prof"]:checked').value;
+    var proj = document.querySelector('input[name="proj"]:checked').value;
+    var rev=num("rev"), cur=num("cur"), amt=num("amt"), dur=num("dur"), rate=num("rate"), oth=num("oth"), ppl=Math.max(1,Math.round(num("ppl"))||1);
+    var pay = payment(amt,dur,rate);
+    var ratio = rev ? (cur+pay)/rev*100 : 0;
+    var maxPay = Math.max(0, rev*0.35 - cur);
+    var rav = rev - cur - pay - oth;
+
+    el("o-rate").textContent = (Math.round(ratio*10)/10).toLocaleString("fr-FR")+" %";
+    var pill = el("o-pill"), fill = el("o-fill"), msg;
+    var st = ratio<=33 ? "ok" : ratio<=35 ? "warn" : "bad";
+    pill.className = "pill "+st;
+    pill.textContent = st==="ok" ? "Confortable" : st==="warn" ? "Proche de la limite" : "Au-dessus de 35 %";
+    fill.style.width = Math.min(ratio/50*100,100)+"%";
+    fill.style.background = st==="ok" ? "var(--ok)" : st==="warn" ? "var(--warn)" : "var(--bad)";
+    if(!rev){ msg = "Entrez vos revenus pour voir le résultat."; }
+    else if(st==="ok"){ msg = "Votre taux d'endettement passe le premier filtre. La banque va maintenant regarder la qualité de votre dossier."; }
+    else if(st==="warn"){ msg = "Vous êtes juste sous le repère de 35 %. La banque n'aura presque aucune marge : votre apport, votre épargne et vos relevés de compte compteront beaucoup."; }
+    else { msg = proj==="immo"
+      ? "Au-dessus de 35 %, la plupart des banques refusent ou demandent d'ajuster le projet : emprunter moins, apporter plus ou solder un crédit en cours."
+      : "Au-dessus de 35 %, la demande a peu de chances de passer. Réduisez le montant, allongez un peu la durée ou soldez un crédit en cours."; }
+    el("o-msg").textContent = msg;
+    el("o-pay").textContent = money(pay);
+    el("o-max").textContent = money(maxPay);
+    el("o-cap").textContent = money(capital(maxPay,dur,rate));
+    el("o-rav").textContent = money(rav);
+    el("o-ravk").textContent = ppl>1 ? "Reste à vivre par mois, soit "+money(rav/ppl)+" par personne" : "Reste à vivre par mois";
+
+    el("o-prof").innerHTML = "";
+    PROFILES[prof].items.forEach(function(it){
+      var li=document.createElement("li"), d=document.createElement("div"), b=document.createElement("b"), p=document.createElement("p");
+      b.textContent=it[0]; p.textContent=it[1]; d.appendChild(b); d.appendChild(p); li.appendChild(d); el("o-prof").appendChild(li);
+    });
+    var pct = function(x){ return (Math.round(x*10)/10).toLocaleString("fr-FR")+" %"; };
+    var RECO_PROF = {
+      cdi:["Mettez en avant votre stabilité","Ancienneté, primes régulières, hausse de salaire : apportez tout ce qui montre des revenus durables."],
+      essai:["Déposez le dossier dès la fin de la période d'essai","Préparez tout maintenant pour le déposer le jour même où elle se termine."],
+      cdd:["Montrez la régularité de vos revenus","Rassemblez contrats et bulletins des 3 dernières années, sans période vide si possible."],
+      indep:["Présentez des comptes lisibles","Préparez vos 3 derniers bilans et séparez bien comptes pro et perso. Une attestation de votre expert-comptable rassure."],
+      fonct:["Mettez en avant votre statut","Joignez votre arrêté de titularisation dès le premier rendez-vous."],
+      first:["Construisez d'abord un historique","Quelques mois de comptes sans découvert et d'épargne régulière renforcent plus le dossier qu'une demande trop tôt."]
+    };
+    var recos = [];
+    if(rev){
+      if(st!=="ok"){
+        var target = st==="bad" ? 35 : 33;
+        var tgtAmt = capital(Math.max(0, rev*target/100 - cur), dur, rate);
+        var gap = amt - tgtAmt;
+        if(gap>0) recos.push(["Ajustez le montant", "Pour passer sous "+target+" %, empruntez au maximum "+money(tgtAmt)+", soit "+money(gap)+" de moins. La différence peut venir de votre apport."]);
+      } else {
+        recos.push(["Votre taux laisse de la marge", "Concentrez-vous sur la qualité du dossier : relevés propres, épargne régulière, justificatifs complets."]);
+      }
+      if(cur>0){
+        recos.push(["Soldez votre crédit en cours si vous le pouvez", "Vos "+money(cur)+" par mois vous coûtent environ "+money(capital(cur,dur,rate))+" de capacité d'emprunt. Sans eux, votre taux passerait à "+pct(pay/rev*100)+"."]);
+      }
+    }
+    recos.push(RECO_PROF[prof]);
+    var ro = el("o-reco"); ro.innerHTML = "";
+    recos.forEach(function(it){
+      var li=document.createElement("li"), d=document.createElement("div"), b=document.createElement("b"), p=document.createElement("p");
+      b.textContent=it[0]; p.textContent=it[1]; d.appendChild(b); d.appendChild(p); li.appendChild(d); ro.appendChild(li);
+    });
+    el("apport").hidden = proj!=="immo";
+
+    var docs = el("o-docs"); docs.innerHTML="";
+    PROFILES[prof].docs.forEach(function(t){ var s=document.createElement("span"); s.className="own"; s.textContent=t; docs.appendChild(s); });
+    var extra = proj==="immo" ? ["Compromis de vente","Justificatifs d'apport et d'épargne"] : ["Devis ou bon de commande"];
+    COMMON.concat(extra).forEach(function(t){ var s=document.createElement("span"); s.textContent=t; docs.appendChild(s); });
+  }
+
+  document.querySelectorAll('input').forEach(function(i){ i.addEventListener("input",render); i.addEventListener("change",render); });
+  render();
+})();
+</script>
+
+</body>
+</html>
